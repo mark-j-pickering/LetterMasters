@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Web;
+using LetterMastersAPI.Exceptions;
 
 namespace LetterMastersAPI.Controllers
 {
@@ -33,7 +35,7 @@ namespace LetterMastersAPI.Controllers
 
             if (value != stripped)
             {
-                throw new Exception("Invalid request.  Only alpha characters are valid.");
+                throw new EncoderException("Invalid request.  Only alpha characters are valid.");
             }
 
             var bytes = encoding.GetBytes(stripped);
