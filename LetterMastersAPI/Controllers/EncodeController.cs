@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace LetterMastersAPI.Controllers
 {
@@ -14,14 +15,27 @@ namespace LetterMastersAPI.Controllers
     public class EncodeController : Controller
     {
 
+        /// <summary>
+        /// Returns the Base64 Encoding of an alpha value.
+        /// </summary>
+        /// <remarks>Returns the Base64 Encoding of the input value.  A non-alpha character in the input is an invalid input</remarks>
+        /// <param name="value">The value to encode</param>
+        /// <response code="200">OK</response>
         // GET: api/Encode/abcde
         [HttpGet("{value}", Name = "Encode64")]
-        public string Encode64(string value)
+        [Produces("application/json")]
+        public virtual string Encode64(string value)
         {
             string encodedValue;
             
             var encoding = new ASCIIEncoding();
             var stripped = GetAlphas(value);
+
+            if (value != stripped)
+            {
+                throw new Exception("Invalid request.  Only alpha characters are valid.");
+            }
+
             var bytes = encoding.GetBytes(stripped);
 
             encodedValue = Convert.ToBase64String(bytes);
@@ -31,9 +45,9 @@ namespace LetterMastersAPI.Controllers
 
         private string GetAlphas(string value)
         {
-            var pattern = @"[a-zA-Z]";
+            var pattern = @"[^a-zA-Z]";
             var regex = new Regex(pattern);
-            var matches = regex.ToString();
+            var matches = regex.Replace(value, string.Empty);
 
             string result = matches;
 
