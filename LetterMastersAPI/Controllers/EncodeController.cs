@@ -13,8 +13,8 @@ using LetterMastersAPI.Exceptions;
 namespace LetterMastersAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Encode64")]
-    public class EncodeController : Controller
+    [Route("api/encode64")]
+    public class EncoderController : Controller
     {
 
         /// <summary>
@@ -22,22 +22,23 @@ namespace LetterMastersAPI.Controllers
         /// </summary>
         /// <remarks>Returns the Base64 Encoding of the input value.  A non-alpha character in the input is an invalid input</remarks>
         /// <param name="value">The value to encode</param>
-        /// <response code="200">OK</response>
-        // GET: api/Encode/abcde
-        [HttpGet("{value}", Name = "Encode64")]
+        [HttpGet("{value}", Name = "encode64")]
         [Produces("application/json")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public virtual string Encode64(string value)
         {
             string encodedValue;
-            
-            var encoding = new ASCIIEncoding();
+            if (value != null) value = value.Trim();
+
             var stripped = GetAlphas(value);
 
-            if (value != stripped)
+            if (stripped is null || value != stripped)
             {
                 throw new EncoderException("Invalid request.  Only alpha characters are valid.");
             }
 
+            var encoding = new ASCIIEncoding();
             var bytes = encoding.GetBytes(stripped);
 
             encodedValue = Convert.ToBase64String(bytes);
@@ -47,6 +48,8 @@ namespace LetterMastersAPI.Controllers
 
         private string GetAlphas(string value)
         {
+            if (value is null || value == string.Empty) return null;
+
             var pattern = @"[^a-zA-Z]";
             var regex = new Regex(pattern);
             var matches = regex.Replace(value, string.Empty);

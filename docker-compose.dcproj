@@ -4,7 +4,7 @@
     <ProjectVersion>2.1</ProjectVersion>
     <ProjectGuid>511fcb18-9e69-4c37-a8d5-9e6282954ba9</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://{ServiceIPAddress}{ServicePort}/api/values</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://{ServiceIPAddress}{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>lettermastersapi</DockerServiceName>
   </PropertyGroup>
   <PropertyGroup>
