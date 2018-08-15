@@ -10,13 +10,13 @@ using System.Text.RegularExpressions;
 namespace LetterMastersAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Encode")]
+    [Route("api/Encoder")]
     public class EncodeController : Controller
     {
 
         // GET: api/Encode/abcde
-        [HttpGet("{value}", Name = "Get")]
-        public string Get(string value)
+        [HttpGet("{value}", Name = "Encode64")]
+        public string Encode64(string value)
         {
             string encodedValue;
             
