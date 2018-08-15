@@ -13,7 +13,7 @@ using LetterMastersAPI.Exceptions;
 namespace LetterMastersAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Encoder")]
+    [Route("api/Encode64")]
     public class EncodeController : Controller
     {
 

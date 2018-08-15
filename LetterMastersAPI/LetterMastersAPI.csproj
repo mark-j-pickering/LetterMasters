@@ -5,6 +5,7 @@
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     <NoWin32Manifest>true</NoWin32Manifest>
     <StartupObject>LetterMastersAPI.Program</StartupObject>
+    <UserSecretsId>6fa47770-3bb9-4509-ac47-f32c27680d4f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
