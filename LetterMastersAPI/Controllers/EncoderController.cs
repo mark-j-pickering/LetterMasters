@@ -14,7 +14,7 @@ namespace LetterMastersAPI.Controllers
 {
     [Produces("application/json")]
     [Route("api/Encode64")]
-    public class EncodeController : Controller
+    public class EncoderController : Controller
     {
 
         /// <summary>
