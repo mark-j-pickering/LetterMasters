@@ -11,7 +11,7 @@ namespace LetterMastersTests
         public void EncodeTestSingleBadChar1()
         {
             EncoderController enc = new EncoderController();
-            Assert.Throws<EncoderException>(Tosser);
+            Assert.Throws<EncoderException>(Tossa);
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace LetterMastersTests
         }
 
 
-        void Tosser()
+        void Tossa()
         {
             EncoderController enc = new EncoderController();
             var result = enc.Encode64(@"1");
